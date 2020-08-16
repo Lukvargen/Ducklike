@@ -44,7 +44,7 @@ tracks/0/keys = {
 "values": [ Rect2( 400, 112, 16, 10 ), Rect2( 400, 112, 16, 16 ) ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=5]
 resource_name = "take_dmg"
 length = 0.1
 tracks/0/type = "value"
@@ -60,13 +60,13 @@ tracks/0/keys = {
 "values": [ Color( 1, 0, 0, 1 ), Color( 1, 0.937255, 0.431373, 1 ) ]
 }
 
-[sub_resource type="AudioStreamRandomPitch" id=5]
+[sub_resource type="AudioStreamRandomPitch" id=6]
 audio_stream = ExtResource( 3 )
 
-[sub_resource type="AudioStreamRandomPitch" id=6]
+[sub_resource type="AudioStreamRandomPitch" id=7]
 audio_stream = ExtResource( 4 )
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=8]
 length = 2.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:rotation_degrees")
@@ -125,22 +125,23 @@ region_rect = Rect2( 400, 112, 16, 16 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/enter_water = SubResource( 3 )
 anims/exit_water = SubResource( 4 )
-anims/take_dmg = SubResource( 8 )
+anims/take_dmg = SubResource( 5 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
+process_mode = 0
 
 [node name="WalkSound1" type="AudioStreamPlayer" parent="."]
-stream = SubResource( 5 )
+stream = SubResource( 6 )
 volume_db = -10.0
 
 [node name="WalkSound2" type="AudioStreamPlayer" parent="."]
-stream = SubResource( 6 )
+stream = SubResource( 7 )
 volume_db = -10.0
 
 [node name="WalkAnim" type="AnimationPlayer" parent="."]
 playback_speed = 5.0
-anims/walk = SubResource( 7 )
+anims/walk = SubResource( 8 )
 
 [node name="Weapon" type="Node2D" parent="."]
 position = Vector2( 0, -3.53953 )
@@ -150,12 +151,14 @@ position = Vector2( 0, -3.53953 )
 [node name="Control" type="Control" parent="UI"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="HeartContainer" type="GridContainer" parent="UI/Control"]
 anchor_right = 1.0
+mouse_filter = 2
 script = ExtResource( 6 )
 
 [node name="HurtSound" type="AudioStreamPlayer" parent="."]

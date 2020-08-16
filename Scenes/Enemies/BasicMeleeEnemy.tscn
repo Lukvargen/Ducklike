@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/BasicMeleeEnemy.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Enemies/Enemy.tscn" type="PackedScene" id=2]
+
+[node name="BasicMeleeEnemy" instance=ExtResource( 2 )]
+script = ExtResource( 1 )
+hp = 5
+
+[node name="Sprite" parent="." index="2"]
+region_rect = Rect2( 448, 32, 16, 16 )

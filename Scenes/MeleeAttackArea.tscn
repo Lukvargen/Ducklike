@@ -14,7 +14,7 @@ tracks/0/path = NodePath("Node2D/Sprite:region_rect")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1, 0.3 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
@@ -47,6 +47,18 @@ tracks/2/keys = {
 "method": "queue_free"
 } ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath("Node2D/Sprite:scale")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.1, 0.1 ), Vector2( 1, 1 ) ]
+}
 
 [node name="MeleeAttackArea" type="Area2D"]
 script = ExtResource( 2 )
@@ -58,10 +70,10 @@ shape = SubResource( 1 )
 rotation = 0.785398
 
 [node name="Sprite" type="Sprite" parent="Node2D"]
-scale = Vector2( 1, 1 )
+modulate = Color( 1, 1, 1, 0 )
 texture = ExtResource( 1 )
 region_enabled = true
-region_rect = Rect2( 400, 176, 5, 5 )
+region_rect = Rect2( 400, 176, 15, 15 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "spawn"

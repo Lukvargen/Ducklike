@@ -30,10 +30,10 @@ func attack(dir):
 	if attack_time <= 0:
 		attack_time = attack_delay
 		
-		var attack_area = preload("res://Scenes/MeleeAttackArea.tscn").instance()
-		attack_area.global_position = attack_from_pos.global_position + dir * 12
+		var attack_area = preload("res://Scenes/MeleeAttackDoubleArea.tscn").instance()
+		attack_area.global_position = attack_from_pos.global_position + dir * 14
 		attack_area.rotation = dir.angle()
-		attack_area.velocity = dir * 50
+		attack_area.velocity = dir * 30
 		get_parent().add_child(attack_area)
 		
 		pass

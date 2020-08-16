@@ -2,6 +2,7 @@ extends Sprite
 
 onready var spawn_point = $SpawnPoint
 onready var audio = $AudioStreamPlayer
+onready var anim = $AnimationPlayer
 
 var player_over_pickup = null
 
@@ -26,10 +27,13 @@ func attempt_shoot(dir):
 
 func shoot(dir):
 	audio.play()
+	anim.stop()
+	dir = dir.rotated(rand_range(-0.05, 0.05))
+	anim.play("shoot")
 	var p = preload("res://Scenes/Projectile.tscn").instance()
 	p.global_position = spawn_point.global_position
 	p.rotation = dir.angle()
-	p.velocity = dir * 125
+	p.velocity = dir * 175
 	get_tree().current_scene.add_child(p)
 
 func drop():
@@ -44,7 +48,9 @@ func _on_Area2D_body_entered(body):
 	if get_parent() is KinematicBody2D:
 		return
 	if body is Player:
-		player_over_pickup = body
+		body.call_deferred("equip_weapon",self)
+		emit_signal("picked_up")
+		#player_over_pickup = body
 
 
 func _on_Area2D_body_exited(body):

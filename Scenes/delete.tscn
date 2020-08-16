@@ -1,9 +1,10 @@
 [gd_scene load_steps=15 format=2]
 
-[ext_resource path="res://Scenes/BasicMeleeEnemy.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Enemies/BasicMeleeEnemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Textures/colored_transparent_packed.png" type="Texture" id=3]
 [ext_resource path="res://Scripts/PlayerSpawn.gd" type="Script" id=4]
+
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )

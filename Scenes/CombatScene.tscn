@@ -1,16 +1,26 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://CombatTileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/CombatScene.gd" type="Script" id=2]
 
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 16, 16 )
+
 [node name="CombatScene" type="Node2D"]
 script = ExtResource( 2 )
-
-[node name="YSort" type="YSort" parent="."]
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 16, 16 )
+collision_layer = 3
 format = 1
 
+[node name="YSort" type="YSort" parent="."]
+
 [node name="PlayerSpawn" type="Position2D" parent="."]
+
+[node name="NextLevelArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NextLevelArea"]
+shape = SubResource( 1 )
+[connection signal="body_entered" from="NextLevelArea" to="." method="_on_NextLevelArea_body_entered"]

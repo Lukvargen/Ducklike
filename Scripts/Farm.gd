@@ -42,7 +42,7 @@ func start_attack():
 	$UnderAttackMusic.play()
 	
 	for spawn in $BadEnemiesSpawn.get_children():
-		yield(get_tree().create_timer(rand_range(0.5, 2)),"timeout")
+		yield(get_tree().create_timer(rand_range(0.5, 2), false),"timeout")
 		var smoke = preload("res://Scenes/SmokeParticle.tscn").instance()
 		smoke.global_position = spawn.global_position
 		get_tree().current_scene.add_child(smoke)
@@ -51,7 +51,7 @@ func start_attack():
 		enemy.global_position = spawn.global_position
 		get_tree().current_scene.add_child(enemy)
 	
-	yield(get_tree().create_timer(2),"timeout")
+	yield(get_tree().create_timer(2, false),"timeout")
 	var smoke = preload("res://Scenes/SmokeParticle.tscn").instance()
 	var spawn = $BossSpawn
 	smoke.global_position = spawn.global_position
@@ -62,12 +62,14 @@ func start_attack():
 	get_tree().current_scene.add_child(enemy)
 
 func _on_Gun_picked_up():
-	$ForestBlock/CollisionShape2D.disabled = true
+	$ForestBlock/CollisionShape2D.set_deferred("disabled", true)
 	pass # Replace with function body.
 
 
 func _on_ExitFarm_body_entered(body):
 	if body is Player:
+		Transition.play_in()
+		yield(Transition, "transition_complete")
 		MusicPlayer.change_song("forest")
 		remove_child(body)
 		get_tree().change_scene_to(preload("res://Scenes/CombatScenes/Forest1.tscn"))

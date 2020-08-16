@@ -28,6 +28,8 @@ onready var water_particle = $WaterParticle
 
 onready var weapon = $Weapon
 
+onready var camera = $Camera2D
+
 var equiped_weapon = null
 
 func _ready():
@@ -60,13 +62,16 @@ func _physics_process(delta):
 	
 	if equiped_weapon:
 		var dist = (get_global_mouse_position() - global_position)
+		#camera.position = dist * 0.1
 		equiped_weapon.rotation = dist.angle()
 		
 		
 		if dist.x < 0:
-			equiped_weapon.flip_v = true
+			#equiped_weapon.flip_v = true
+			equiped_weapon.scale.y = -1
 		elif dist.x > 0:
-			equiped_weapon.flip_v = false
+			#equiped_weapon.flip_v = false
+			equiped_weapon.scale.y = 1
 		
 		if Input.is_action_pressed("attack"):
 			equiped_weapon.attempt_shoot(dist.normalized())

@@ -2,7 +2,6 @@ extends Enemy
 
 
 var target = null
-var speed = 40
 
 func _physics_process(delta):
 	if target == null:

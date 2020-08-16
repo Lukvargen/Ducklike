@@ -3,7 +3,6 @@ class_name CutsceneBoss
 
 
 var target = null
-var speed = 40
 
 var picked_up_bob = false
 
