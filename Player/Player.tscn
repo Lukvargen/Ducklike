@@ -1,0 +1,162 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://Textures/colored_transparent_packed.png" type="Texture" id=1]
+[ext_resource path="res://Player/Player.gd" type="Script" id=2]
+[ext_resource path="res://Player/sfx_movement_footsteps1a.wav" type="AudioStream" id=3]
+[ext_resource path="res://Player/sfx_movement_footsteps1b.wav" type="AudioStream" id=4]
+[ext_resource path="res://Textures/BubbleParticle.png" type="Texture" id=5]
+[ext_resource path="res://Player/HeartContainer.gd" type="Script" id=6]
+[ext_resource path="res://Sound/HitSound.wav" type="AudioStream" id=7]
+
+[sub_resource type="Curve" id=1]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 4.0
+
+[sub_resource type="Animation" id=3]
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:region_rect")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Rect2( 400, 112, 16, 16 ), Rect2( 400, 112, 16, 10 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:region_rect")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Rect2( 400, 112, 16, 10 ), Rect2( 400, 112, 16, 16 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "take_dmg"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 0, 0, 1 ), Color( 1, 0.937255, 0.431373, 1 ) ]
+}
+
+[sub_resource type="AudioStreamRandomPitch" id=5]
+audio_stream = ExtResource( 3 )
+
+[sub_resource type="AudioStreamRandomPitch" id=6]
+audio_stream = ExtResource( 4 )
+
+[sub_resource type="Animation" id=7]
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1.5, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -5.0, 5.0, 0.0 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.5, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "play_footstep"
+}, {
+"args": [  ],
+"method": "play_footstep"
+} ]
+}
+
+[node name="Player" type="KinematicBody2D"]
+script = ExtResource( 2 )
+
+[node name="WaterParticle" type="CPUParticles2D" parent="."]
+emitting = false
+texture = ExtResource( 5 )
+direction = Vector2( -1, 0 )
+spread = 30.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 23.64
+damping = 8.63
+scale_amount_curve = SubResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -1 )
+shape = SubResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+modulate = Color( 1, 0.937255, 0.431373, 1 )
+texture = ExtResource( 1 )
+offset = Vector2( 0, -6 )
+region_enabled = true
+region_rect = Rect2( 400, 112, 16, 16 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/enter_water = SubResource( 3 )
+anims/exit_water = SubResource( 4 )
+anims/take_dmg = SubResource( 8 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+
+[node name="WalkSound1" type="AudioStreamPlayer" parent="."]
+stream = SubResource( 5 )
+volume_db = -10.0
+
+[node name="WalkSound2" type="AudioStreamPlayer" parent="."]
+stream = SubResource( 6 )
+volume_db = -10.0
+
+[node name="WalkAnim" type="AnimationPlayer" parent="."]
+playback_speed = 5.0
+anims/walk = SubResource( 7 )
+
+[node name="Weapon" type="Node2D" parent="."]
+position = Vector2( 0, -3.53953 )
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="UI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HeartContainer" type="GridContainer" parent="UI/Control"]
+anchor_right = 1.0
+script = ExtResource( 6 )
+
+[node name="HurtSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
