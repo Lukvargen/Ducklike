@@ -36,7 +36,7 @@ func change_state(new_state):
 	match state:
 		IDLE:
 			$DmgArea/CollisionShape2D.set_deferred("disabled", true)
-			yield(get_tree().create_timer(1, false),"timeout")
+			yield(get_tree().create_timer(rand_range(1, 2), false),"timeout")
 			change_state(CHARGE)
 		CHARGE:
 			hit_anim.play("Charge")

@@ -19,16 +19,28 @@ onready var ray = $RayCast2D
 onready var attack_from_pos = $AttackFromPos
 onready var sprite = $Sprite
 
+
+
+
 var dead = false
 
 
 
 func take_dmg(value):
+	Global.freeze()
+	#Global.camera.trauma = 0.5
+	
 	hp -= value
 	hit_sound.play()
 	#hit_anim.play("Hit")
 	anim.play("Hit")
 	velocity *= hit_vel_mult
+	
+	var dmg_lbl = preload("res://Scenes/DmgLbl.tscn").instance()
+	dmg_lbl.rect_global_position = global_position
+	get_tree().current_scene.add_child(dmg_lbl)
+	dmg_lbl.init(value)
+	
 	if hp <= 0:
 		call_deferred("die")
 
@@ -41,13 +53,19 @@ func die():
 	smoke.global_position = global_position
 	get_tree().current_scene.add_child(smoke)
 	
+	for i in int(rand_range(1, 3)):
+		var bone = preload("res://Scenes/Bone.tscn").instance()
+		bone.global_position = global_position + Vector2(rand_range(-4,4), rand_range(-4, 4))
+		get_tree().current_scene.add_child(bone)
+	
+	
 	hide()
 #	$CollisionShape2D.set_deferred("disabled", true)
 	$CollisionShape2D.disabled = true
 	$HitBox/CollisionShape2D.disabled = true
 	set_physics_process(false)
 #	get_parent().remove_child(self)
-	yield(get_tree().create_timer(1),"timeout")
+	yield(get_tree().create_timer(1, false),"timeout")
 	
 	queue_free()
 

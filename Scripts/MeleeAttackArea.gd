@@ -2,7 +2,7 @@ extends Area2D
 
 
 var velocity = Vector2()
-var dmg = 0
+export var dmg = 1
 
 
 func init(dmg):

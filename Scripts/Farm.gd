@@ -8,11 +8,15 @@ var bread_needed = 5
 var attacked = false
 
 func _ready():
-	yield(get_tree().create_timer(1.0),"timeout")
-	spawn_bread()
-	
-	#start_attack()
-	pass
+	Transition.play_out()
+	if not Global.data.intro_played:
+		MusicPlayer.change_song("calm")
+		yield(get_tree().create_timer(1.0),"timeout")
+		spawn_bread()
+	else:
+		MusicPlayer.change_song("after_attacked")
+		$Bob.queue_free()
+		$ForestBlock/CollisionShape2D.set_deferred("disabled", true)
 
 func spawn_bread():
 	
@@ -38,8 +42,7 @@ func bread_eaten():
 
 func start_attack():
 	attacked = true
-	$CalmMusic.stop()
-	$UnderAttackMusic.play()
+	MusicPlayer.change_song("under_attacked")
 	
 	for spawn in $BadEnemiesSpawn.get_children():
 		yield(get_tree().create_timer(rand_range(0.5, 2), false),"timeout")
@@ -68,10 +71,13 @@ func _on_Gun_picked_up():
 
 func _on_ExitFarm_body_entered(body):
 	if body is Player:
+		Global.data.intro_played = true
+		Global.emit_signal("into_complete")
+		
 		Transition.play_in()
 		yield(Transition, "transition_complete")
 		MusicPlayer.change_song("forest")
 		remove_child(body)
 		get_tree().change_scene_to(preload("res://Scenes/CombatScenes/Forest1.tscn"))
-		pass
-	pass # Replace with function body.
+		
+		
