@@ -10,22 +10,8 @@ radius = 4.0
 [sub_resource type="CircleShape2D" id=2]
 radius = 128.0
 
-[sub_resource type="Animation" id=3]
-length = 2.0
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:rotation_degrees")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5, 1.5, 2 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 0,
-"values": [ 0.0, -5.0, 5.0, 0.0 ]
-}
-
 [sub_resource type="Animation" id=4]
+resource_name = "Hit"
 length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:modulate")
@@ -38,6 +24,33 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 0.933333, 0.188235, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rotation_degrees")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 20.0, 0.0 ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.3, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -5.0, 5.0, 0.0 ]
 }
 
 [sub_resource type="AudioStreamRandomPitch" id=5]
@@ -58,13 +71,12 @@ shape = SubResource( 1 )
 shape = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
-modulate = Color( 1, 0.933333, 0.188235, 1 )
 texture = ExtResource( 1 )
 offset = Vector2( 0, -7 )
 region_enabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-playback_speed = 5.0
+anims/Hit = SubResource( 4 )
 anims/walk = SubResource( 3 )
 
 [node name="HitAnim" type="AnimationPlayer" parent="."]

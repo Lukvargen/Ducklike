@@ -17,7 +17,7 @@ func _physics_process(delta):
 	
 	velocity = steer(dir)
 	
-	move()
+	move(delta)
 	
 	attack_time -= delta
 	if dist.length() < 32:

@@ -17,7 +17,7 @@ func _physics_process(delta):
 	
 	velocity = steer(dir)
 	
-	move()
+	move(delta)
 	
 	attack_time -= delta
 	if dist.length() < 32:
@@ -36,11 +36,10 @@ func attack(dir):
 		attack_area.velocity = dir * 50
 		get_parent().add_child(attack_area)
 		
-		pass
-	pass
+
+
 
 func _on_AgroArea_body_entered(body):
 	if body is Player:
 		target = body
-		pass
-	pass
+

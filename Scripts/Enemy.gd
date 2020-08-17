@@ -4,8 +4,11 @@ class_name Enemy
 export var hp = 3
 export var speed = 50
 
+export var hit_vel_mult = 0.1
+
 export var mass = 1.0
 export var max_force = 3
+
 
 var velocity = Vector2()
 
@@ -23,8 +26,9 @@ var dead = false
 func take_dmg(value):
 	hp -= value
 	hit_sound.play()
-	hit_anim.play("Hit")
-	velocity *= 0.1
+	#hit_anim.play("Hit")
+	anim.play("Hit")
+	velocity *= hit_vel_mult
 	if hp <= 0:
 		call_deferred("die")
 
@@ -56,9 +60,10 @@ func steer(dir):
 	velocity = (velocity + steering).clamped(speed)
 	return velocity
 
-func move():
+func move(delta):
 	velocity = move_and_slide(velocity)
-	anim.play("walk")
+	if not anim.is_playing():
+		anim.play("walk")
 	if velocity.x != 0:
 		sprite.scale.x = sign(velocity.x)
 	pass

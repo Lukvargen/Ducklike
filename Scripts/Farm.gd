@@ -11,7 +11,7 @@ func _ready():
 	yield(get_tree().create_timer(1.0),"timeout")
 	spawn_bread()
 	
-	start_attack()
+	#start_attack()
 	pass
 
 func spawn_bread():

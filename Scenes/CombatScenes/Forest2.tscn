@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scenes/CombatScene.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Enemies/FastMeleeEnemy.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Enemies/BasicMeleeEnemy.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Textures/colored_transparent_packed.png" type="Texture" id=4]
+[ext_resource path="res://Scenes/CombatScenes/Forest3.tscn" type="PackedScene" id=5]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -137,6 +138,7 @@ resource_local_to_scene = true
 1/z_index = 0
 
 [node name="Forest2" instance=ExtResource( 1 )]
+next_scene = ExtResource( 5 )
 
 [node name="TileMap" parent="." index="0"]
 tile_set = SubResource( 10 )

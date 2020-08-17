@@ -99,6 +99,7 @@ tracks/1/keys = {
 }
 
 [node name="Player" type="KinematicBody2D"]
+collision_layer = 9
 script = ExtResource( 2 )
 
 [node name="WaterParticle" type="CPUParticles2D" parent="."]

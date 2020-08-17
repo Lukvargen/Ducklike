@@ -8,7 +8,8 @@ func _physics_process(delta):
 		return
 	var dir = (target.global_position - global_position).normalized()
 	move_and_slide(dir * speed)
-	anim.play("walk")
+	if not anim.is_playing():
+		anim.play("walk")
 	pass
 
 
