@@ -10,6 +10,7 @@ radius = 221.5
 script = ExtResource( 2 )
 hp = 2
 speed = 40
+bonedrop_amount = 0
 
 [node name="CollisionShape2D" parent="AgroArea" index="0"]
 shape = SubResource( 1 )

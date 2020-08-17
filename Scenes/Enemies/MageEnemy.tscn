@@ -57,6 +57,7 @@ radius = 64.0
 [node name="MageEnemy" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 hp = 8
+bonedrop_amount = 5
 
 [node name="Sprite" parent="." index="2"]
 region_rect = Rect2( 384, 0, 16, 16 )

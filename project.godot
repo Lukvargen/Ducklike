@@ -38,9 +38,12 @@ _global_script_class_icons={
 
 [application]
 
-config/name="MizGameJam"
+config/name="Ducklike"
 run/main_scene="res://Farm.tscn"
-config/icon="res://icon.png"
+boot_splash/image="res://Build/LoadScreen.png"
+boot_splash/bg_color=Color( 0.278431, 0.176471, 0.235294, 1 )
+config/icon="res://Build/DuckLike.png"
+config/windows_native_icon="res://Build/DuckLikeIcon.ico"
 
 [autoload]
 
@@ -120,3 +123,4 @@ vram_compression/import_etc=true
 vram_compression/import_etc2=false
 environment/default_clear_color=Color( 0.278431, 0.176471, 0.235294, 1 )
 environment/default_environment="res://default_env.tres"
+quality/dynamic_fonts/use_oversampling=false

@@ -6,6 +6,7 @@
 [node name="FastMeleeEnemy" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 speed = 90
+bonedrop_amount = 3
 
 [node name="Sprite" parent="." index="2"]
 region_rect = Rect2( 480, 32, 16, 16 )

@@ -16,13 +16,13 @@
 [sub_resource type="Curve" id=1]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="Gradient" id=9]
+[sub_resource type="Gradient" id=2]
 colors = PoolColorArray( 1, 1, 1, 0.545098, 1, 1, 1, 0 )
 
-[sub_resource type="CircleShape2D" id=2]
+[sub_resource type="CircleShape2D" id=3]
 radius = 4.0
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=4]
 length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:region_rect")
@@ -37,7 +37,7 @@ tracks/0/keys = {
 "values": [ Rect2( 400, 112, 16, 16 ), Rect2( 400, 112, 16, 10 ) ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=5]
 length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:region_rect")
@@ -52,8 +52,7 @@ tracks/0/keys = {
 "values": [ Rect2( 400, 112, 16, 10 ), Rect2( 400, 112, 16, 16 ) ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "take_dmg"
+[sub_resource type="Animation" id=6]
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:modulate")
@@ -68,13 +67,13 @@ tracks/0/keys = {
 "values": [ Color( 1, 0, 0, 1 ), Color( 1, 0.937255, 0.431373, 1 ) ]
 }
 
-[sub_resource type="AudioStreamRandomPitch" id=6]
+[sub_resource type="AudioStreamRandomPitch" id=7]
 audio_stream = ExtResource( 3 )
 
-[sub_resource type="AudioStreamRandomPitch" id=7]
+[sub_resource type="AudioStreamRandomPitch" id=8]
 audio_stream = ExtResource( 4 )
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=9]
 resource_name = "Roll"
 length = 1.6
 tracks/0/type = "value"
@@ -102,7 +101,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0, -6 ), Vector2( 0, -16 ), Vector2( 0, -6 ) ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=10]
 length = 2.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:rotation_degrees")
@@ -134,7 +133,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=15]
+[sub_resource type="Animation" id=11]
 resource_name = "show"
 length = 2.0
 tracks/0/type = "value"
@@ -162,7 +161,7 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=12]
 resource_name = "HpChanged"
 length = 0.2
 tracks/0/type = "value"
@@ -175,15 +174,14 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 1.5, 1.5 ), Vector2( 1, 1 ) ]
+"values": [ Vector2( 1.2, 1.2 ), Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="AtlasTexture" id=11]
+[sub_resource type="AtlasTexture" id=13]
 atlas = ExtResource( 1 )
 region = Rect2( 528, 192, 16, 16 )
 
-[sub_resource type="Animation" id=12]
-resource_name = "SkullChanged"
+[sub_resource type="Animation" id=14]
 length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:rect_scale")
@@ -204,6 +202,9 @@ script = ExtResource( 2 )
 
 [node name="WaterParticle" type="CPUParticles2D" parent="."]
 emitting = false
+amount = 5
+lifetime = 0.5
+local_coords = false
 texture = ExtResource( 5 )
 direction = Vector2( -1, 0 )
 spread = 30.0
@@ -229,27 +230,26 @@ damping = 8.63
 scale_amount = 0.35
 scale_amount_random = 0.51
 scale_amount_curve = SubResource( 1 )
-color_ramp = SubResource( 9 )
+color_ramp = SubResource( 2 )
 __meta__ = {
 "_editor_description_": ""
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -1 )
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="."]
 modulate = Color( 1, 0.937255, 0.431373, 1 )
 position = Vector2( 0, -6 )
-rotation = 6.28319
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 400, 112, 16, 16 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/enter_water = SubResource( 3 )
-anims/exit_water = SubResource( 4 )
-anims/take_dmg = SubResource( 5 )
+anims/enter_water = SubResource( 4 )
+anims/exit_water = SubResource( 5 )
+anims/take_dmg = SubResource( 6 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
@@ -257,17 +257,17 @@ process_mode = 0
 script = ExtResource( 8 )
 
 [node name="WalkSound1" type="AudioStreamPlayer" parent="."]
-stream = SubResource( 6 )
+stream = SubResource( 7 )
 volume_db = -10.0
 
 [node name="WalkSound2" type="AudioStreamPlayer" parent="."]
-stream = SubResource( 7 )
+stream = SubResource( 8 )
 volume_db = -10.0
 
 [node name="WalkAnim" type="AnimationPlayer" parent="."]
 playback_speed = 5.0
-anims/Roll = SubResource( 10 )
-anims/walk = SubResource( 8 )
+anims/Roll = SubResource( 9 )
+anims/walk = SubResource( 10 )
 
 [node name="Weapon" type="Node2D" parent="."]
 position = Vector2( 0, -3.53953 )
@@ -285,12 +285,17 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="UI/UI"]
-anims/show = SubResource( 15 )
+anims/show = SubResource( 11 )
 
 [node name="HeartContainer" type="GridContainer" parent="UI/UI"]
 anchor_right = 1.0
-margin_bottom = 36.0
+margin_right = -320.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 80, 40 )
+rect_pivot_offset = Vector2( 40, 20 )
 mouse_filter = 2
+custom_constants/vseparation = 0
+custom_constants/hseparation = 0
 columns = 5
 script = ExtResource( 6 )
 __meta__ = {
@@ -299,8 +304,52 @@ __meta__ = {
 
 [node name="Heart" parent="UI/UI/HeartContainer" instance=ExtResource( 10 )]
 
+[node name="Heart2" parent="UI/UI/HeartContainer" instance=ExtResource( 10 )]
+margin_left = 16.0
+margin_right = 32.0
+
+[node name="Heart3" parent="UI/UI/HeartContainer" instance=ExtResource( 10 )]
+margin_left = 32.0
+margin_right = 48.0
+
+[node name="Heart4" parent="UI/UI/HeartContainer" instance=ExtResource( 10 )]
+margin_left = 48.0
+margin_right = 64.0
+
+[node name="Heart5" parent="UI/UI/HeartContainer" instance=ExtResource( 10 )]
+margin_left = 64.0
+margin_right = 80.0
+
+[node name="Heart6" parent="UI/UI/HeartContainer" instance=ExtResource( 10 )]
+margin_top = 16.0
+margin_bottom = 32.0
+
+[node name="Heart7" parent="UI/UI/HeartContainer" instance=ExtResource( 10 )]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 32.0
+margin_bottom = 32.0
+
+[node name="Heart8" parent="UI/UI/HeartContainer" instance=ExtResource( 10 )]
+margin_left = 32.0
+margin_top = 16.0
+margin_right = 48.0
+margin_bottom = 32.0
+
+[node name="Heart9" parent="UI/UI/HeartContainer" instance=ExtResource( 10 )]
+margin_left = 48.0
+margin_top = 16.0
+margin_right = 64.0
+margin_bottom = 32.0
+
+[node name="Heart10" parent="UI/UI/HeartContainer" instance=ExtResource( 10 )]
+margin_left = 64.0
+margin_top = 16.0
+margin_right = 80.0
+margin_bottom = 32.0
+
 [node name="HeartAnim" type="AnimationPlayer" parent="UI/UI/HeartContainer"]
-anims/HpChanged = SubResource( 13 )
+anims/HpChanged = SubResource( 12 )
 
 [node name="SkullContainer" type="HBoxContainer" parent="UI/UI"]
 anchor_left = 1.0
@@ -331,11 +380,11 @@ margin_left = 20.0
 margin_right = 36.0
 margin_bottom = 20.0
 mouse_filter = 2
-texture = SubResource( 11 )
+texture = SubResource( 13 )
 stretch_mode = 6
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="UI/UI/SkullContainer"]
-anims/SkullChanged = SubResource( 12 )
+anims/SkullChanged = SubResource( 14 )
 
 [node name="HurtSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )

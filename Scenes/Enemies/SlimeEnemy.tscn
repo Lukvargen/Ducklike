@@ -27,6 +27,7 @@ collision_mask = 10
 script = ExtResource( 2 )
 hp = 7
 hit_vel_mult = 0.8
+bonedrop_amount = 4
 
 [node name="Sprite" parent="." index="2"]
 region_rect = Rect2( 432, 128, 16, 16 )

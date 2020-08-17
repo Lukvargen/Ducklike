@@ -10,6 +10,8 @@ var attacked = false
 func _ready():
 	Transition.play_out()
 	if not Global.data.intro_played:
+		$Dog.queue_free()
+		
 		MusicPlayer.change_song("calm")
 		yield(get_tree().create_timer(1.0),"timeout")
 		spawn_bread()

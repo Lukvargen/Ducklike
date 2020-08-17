@@ -41,6 +41,8 @@ var dead = false
 
 func _ready():
 	Global.player = self
+	
+	increase_max_hp(Global.calculate_max_hp())
 
 func _physics_process(delta):
 	var input_dir := Vector2()
@@ -159,7 +161,11 @@ func take_dmg(value):
 		Transition.play_in()
 		yield(Transition, "transition_complete")
 		get_tree().change_scene_to(load("res://Farm.tscn"))
-	
+
+func increase_max_hp(value):
+	max_hp += value
+	hp += value
+	emit_signal("hp_changed", hp, max_hp)
 	pass
 
 

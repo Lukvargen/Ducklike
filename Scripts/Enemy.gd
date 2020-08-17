@@ -8,7 +8,7 @@ export var hit_vel_mult = 0.1
 
 export var mass = 1.0
 export var max_force = 3
-
+export var bonedrop_amount = 2
 
 var velocity = Vector2()
 
@@ -53,7 +53,7 @@ func die():
 	smoke.global_position = global_position
 	get_tree().current_scene.add_child(smoke)
 	
-	for i in int(rand_range(1, 3)):
+	for i in round(rand_range(bonedrop_amount*0.5, bonedrop_amount)):
 		var bone = preload("res://Scenes/Bone.tscn").instance()
 		bone.global_position = global_position + Vector2(rand_range(-4,4), rand_range(-4, 4))
 		get_tree().current_scene.add_child(bone)
