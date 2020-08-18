@@ -1,0 +1,196 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://Scenes/MainTheme.tres" type="Theme" id=1]
+[ext_resource path="res://Textures/colored_transparent_packed.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/Shop.gd" type="Script" id=3]
+[ext_resource path="res://Sound/BuyComplete.wav" type="AudioStream" id=4]
+[ext_resource path="res://Sound/BuyNegative.wav" type="AudioStream" id=5]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 16.0
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 2 )
+region = Rect2( 512, 192, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 2 )
+region = Rect2( 358, 336, 10, 16 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 2 )
+region = Rect2( 624, 160, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 2 )
+region = Rect2( 624, 224, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 2 )
+region = Rect2( 624, 288, 16, 16 )
+
+[sub_resource type="Animation" id=7]
+resource_name = "HaveMoney"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("HBoxContainer:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 1, 0.0627451, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HBoxContainer:rect_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1.2, 1.2 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "NoMoney"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("HBoxContainer:rect_rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 15.0, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HBoxContainer:rect_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1.1, 1.1 ), Vector2( 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("HBoxContainer:modulate")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=9]
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("HBoxContainer:rect_scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1e-05, 1e-05 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="AudioStreamRandomPitch" id=10]
+audio_stream = ExtResource( 4 )
+
+[sub_resource type="AudioStreamRandomPitch" id=11]
+audio_stream = ExtResource( 5 )
+
+[node name="Shop" type="Area2D"]
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 8 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 496, 112, 16, 16 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_left = -40.0
+margin_top = -24.0
+margin_right = 40.0
+margin_bottom = -8.0
+rect_pivot_offset = Vector2( 40, 8 )
+theme = ExtResource( 1 )
+custom_constants/separation = 0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+margin_left = 5.0
+margin_top = 1.0
+margin_right = 17.0
+margin_bottom = 14.0
+text = "50"
+
+[node name="TextureRect2" type="TextureRect" parent="HBoxContainer"]
+margin_left = 17.0
+margin_right = 33.0
+margin_bottom = 16.0
+texture = SubResource( 2 )
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+margin_left = 33.0
+margin_right = 43.0
+margin_bottom = 16.0
+texture = SubResource( 3 )
+
+[node name="TextureRect3" type="TextureRect" parent="HBoxContainer"]
+margin_left = 43.0
+margin_right = 59.0
+margin_bottom = 16.0
+texture = SubResource( 4 )
+
+[node name="TextureRect4" type="TextureRect" parent="HBoxContainer"]
+margin_left = 59.0
+margin_right = 75.0
+margin_bottom = 16.0
+texture = SubResource( 5 )
+
+[node name="TextureRect5" type="TextureRect" parent="HBoxContainer/TextureRect4"]
+margin_right = 768.0
+margin_bottom = 352.0
+texture = SubResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/HaveMoney = SubResource( 7 )
+anims/NoMoney = SubResource( 8 )
+anims/show = SubResource( 9 )
+
+[node name="buyComplete" type="AudioStreamPlayer" parent="."]
+stream = SubResource( 10 )
+
+[node name="buyNegative" type="AudioStreamPlayer" parent="."]
+stream = SubResource( 11 )
+[connection signal="body_entered" from="." to="." method="_on_Dog_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_Dog_body_exited"]

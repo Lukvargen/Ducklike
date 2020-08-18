@@ -47,14 +47,14 @@ var dead = false
 func _ready():
 	Global.player = self
 	
-	#"var test = preload("res://Player/Dagger.tscn").instance()
-	#var test = preload("res://Player/Sword.tscn").instance()
+	#var test = preload("res://Player/Dagger.tscn").instance()
+#	var test = preload("res://Player/Sword.tscn").instance()
 	#var test = preload("res://Player/Scythe.tscn").instance()
-	var test = preload("res://Player/Shotgun.tscn").instance()
-	add_child(test)
-	equip_weapon(test)
+	#var test = preload("res://Player/Shotgun.tscn").instance()
+#	add_child(test)
+	#equip_weapon(test)
 	
-	increase_max_hp(Global.calculate_max_hp() + 10000)
+	increase_max_hp(Global.calculate_max_hp())
 
 func _physics_process(delta):
 	roll_powershot_time -= delta
@@ -170,6 +170,7 @@ func take_dmg(value):
 	dmg_lbl.rect_global_position = global_position
 	get_tree().current_scene.add_child(dmg_lbl)
 	dmg_lbl.init(value)
+	Global.camera.trauma = 0.5
 	
 	hp -= value
 	emit_signal("hp_changed", hp, max_hp)

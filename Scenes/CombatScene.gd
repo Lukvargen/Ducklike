@@ -11,6 +11,12 @@ func _ready():
 	if Global.player:
 		Transition.play_out()
 		#yield(Transition, "transition_complete")
+		
+		for i in $EnemySpawnpoints.get_children():
+			if randf() > 0.2:
+				pass
+		
+		
 		Global.player.global_position = $PlayerSpawn.global_position
 		$YSort.add_child(Global.player)
 	pass

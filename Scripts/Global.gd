@@ -17,7 +17,19 @@ var data = {
 	dog_trades = 0,
 }
 
-
+var enemies = {
+	normal = {
+		lvl = 3,
+		scene = preload("res://Scenes/Enemies/BasicMeleeEnemy.tscn")
+	},
+	fast = {
+		lvl = 3,
+		scene = preload("res://Scenes/Enemies/FastMeleeEnemy.tscn")
+	},
+	slime = {
+		lvl = 5
+	}
+}
 
 func freeze():
 	OS.delay_msec(10)

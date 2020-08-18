@@ -23,4 +23,6 @@ format = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NextLevelArea"]
 shape = SubResource( 1 )
+
+[node name="EnemySpawnpoints" type="Node2D" parent="."]
 [connection signal="body_entered" from="NextLevelArea" to="." method="_on_NextLevelArea_body_entered"]
