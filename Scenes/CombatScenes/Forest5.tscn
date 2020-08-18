@@ -38,28 +38,22 @@ position = Vector2( -80, -72 )
 [node name="MageEnemy2" parent="YSort" index="8" instance=ExtResource( 3 )]
 position = Vector2( -240, 136 )
 
-[node name="MageEnemy3" parent="YSort" index="9" instance=ExtResource( 3 )]
+[node name="MageEnemy4" parent="YSort" index="9" instance=ExtResource( 3 )]
+position = Vector2( -64, 432 )
+
+[node name="MageEnemy3" parent="YSort" index="10" instance=ExtResource( 3 )]
 position = Vector2( -280, 80 )
 
-[node name="MageEnemy4" parent="YSort" index="10" instance=ExtResource( 3 )]
-position = Vector2( -392, 456 )
-
-[node name="MageEnemy5" parent="YSort" index="11" instance=ExtResource( 3 )]
-position = Vector2( -40, 360 )
-
-[node name="MageEnemy6" parent="YSort" index="12" instance=ExtResource( 3 )]
-position = Vector2( -160, 560 )
-
-[node name="FastMeleeEnemy" parent="YSort" index="13" instance=ExtResource( 2 )]
+[node name="FastMeleeEnemy" parent="YSort" index="11" instance=ExtResource( 2 )]
 position = Vector2( -576, 512 )
 
-[node name="FastMeleeEnemy2" parent="YSort" index="14" instance=ExtResource( 2 )]
+[node name="FastMeleeEnemy2" parent="YSort" index="12" instance=ExtResource( 2 )]
 position = Vector2( -552, 536 )
 
-[node name="FastMeleeEnemy3" parent="YSort" index="15" instance=ExtResource( 2 )]
+[node name="FastMeleeEnemy3" parent="YSort" index="13" instance=ExtResource( 2 )]
 position = Vector2( -592, 544 )
 
-[node name="FastMeleeEnemy4" parent="YSort" index="16" instance=ExtResource( 2 )]
+[node name="FastMeleeEnemy4" parent="YSort" index="14" instance=ExtResource( 2 )]
 position = Vector2( -368, 632 )
 
 [node name="PlayerSpawn" parent="." index="2"]

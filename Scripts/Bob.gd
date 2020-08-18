@@ -15,7 +15,7 @@ func _physics_process(delta):
 	if target.get_ref():
 		var dist = (target.get_ref().global_position - global_position)
 		gun.rotation = dist.angle()
-		gun.attempt_shoot(dist.normalized())
+		gun.attempt_attack(dist.normalized())
 		if dist.x < 0:
 			
 			gun.flip_v = true

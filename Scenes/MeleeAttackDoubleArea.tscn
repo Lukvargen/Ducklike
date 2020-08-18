@@ -15,5 +15,6 @@ shape = SubResource( 1 )
 rotation = 0.0
 
 [node name="Sprite" parent="Node2D" index="0"]
-modulate = Color( 1, 1, 1, 1 )
+modulate = Color( 1, 1, 1, 0 )
+scale = Vector2( 1, 1 )
 region_rect = Rect2( 480, 176, 16, 16 )

@@ -66,6 +66,8 @@ script = ExtResource( 2 )
 shape = SubResource( 1 )
 
 [node name="AgroArea" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AgroArea"]
 shape = SubResource( 2 )
@@ -97,4 +99,6 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 shape = SubResource( 6 )
+
+[node name="StunTimer" type="Timer" parent="."]
 [connection signal="body_entered" from="AgroArea" to="." method="_on_AgroArea_body_entered"]

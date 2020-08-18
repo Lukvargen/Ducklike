@@ -65,6 +65,8 @@ tracks/3/keys = {
 audio_stream = ExtResource( 3 )
 
 [node name="MeleeAttackArea" type="Area2D"]
+collision_layer = 0
+collision_mask = 8
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -74,7 +76,7 @@ shape = SubResource( 1 )
 rotation = 0.785398
 
 [node name="Sprite" type="Sprite" parent="Node2D"]
-modulate = Color( 1, 1, 1, 0 )
+scale = Vector2( 0.1, 0.1 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 400, 176, 15, 15 )

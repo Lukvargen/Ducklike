@@ -30,14 +30,14 @@ func steer(dir):
 	return velocity
 
 func _on_SeekArea_body_entered(body):
-	if body is Player:
+	if body.is_in_group("player"):
 		player = body
 	pass # Replace with function body.
 
 
 var dead = false
 func _on_PickupArea_body_entered(body):
-	if body is Player:
+	if body.is_in_group("player"):
 		if dead:
 			return
 		dead = true

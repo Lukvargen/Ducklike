@@ -24,6 +24,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Enemy.gd"
 }, {
+"base": "Sprite",
+"class": "Gun",
+"language": "GDScript",
+"path": "res://Scripts/Gun.gd"
+}, {
+"base": "Sprite",
+"class": "MeleeWeapon",
+"language": "GDScript",
+"path": "res://Scripts/MeleeWeapon.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Player",
 "language": "GDScript",
@@ -33,6 +43,8 @@ _global_script_class_icons={
 "Bob": "",
 "CutsceneBoss": "",
 "Enemy": "",
+"Gun": "",
+"MeleeWeapon": "",
 "Player": ""
 }
 
@@ -106,6 +118,16 @@ fullscreen={
 roll={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"unicode":0,"echo":false,"script":null)
+ ]
+}
+show_fps={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":92,"unicode":0,"echo":false,"script":null)
+ ]
+}
+slow={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777218,"unicode":0,"echo":false,"script":null)
  ]
 }
 

@@ -1,4 +1,5 @@
 extends Sprite
+class_name Gun
 
 onready var spawn_point = $SpawnPoint
 onready var audio = $AudioStreamPlayer
@@ -8,6 +9,9 @@ var player_over_pickup = null
 
 var shoot_delay = 0.25
 var shoot_delta = 0
+
+export var projectile_speed = 175
+export var rand_spread = 0.05
 
 signal picked_up
 
@@ -20,20 +24,31 @@ func _process(delta):
 			emit_signal("picked_up")
 			pass
 
-func attempt_shoot(dir):
+func attempt_attack(dir):
 	if shoot_delta >= shoot_delay:
 		shoot_delta = 0
-		shoot(dir)
+		shoot(dir, projectile_speed)
+		return true
+	return false
 
-func shoot(dir):
+func attempt_super_attack(dir):
+	if shoot_delta >= shoot_delay:
+		shoot_delta = 0
+		shoot(dir.rotated(rand_range(-0.1, 0.1)), 200)
+		yield(get_tree().create_timer(0.1, false),"timeout")
+		shoot(dir.rotated(rand_range(-0.1, 0.1)), 200)
+		return true
+	return false
+
+func shoot(dir, speed):
 	audio.play()
 	anim.stop()
-	dir = dir.rotated(rand_range(-0.05, 0.05))
+	dir = dir.rotated(rand_range(-rand_spread, rand_spread))
 	anim.play("shoot")
 	var p = preload("res://Scenes/Projectile.tscn").instance()
 	p.global_position = spawn_point.global_position
 	p.rotation = dir.angle()
-	p.velocity = dir * 175
+	p.velocity = dir * speed
 	get_tree().current_scene.add_child(p)
 
 func drop():
@@ -47,7 +62,7 @@ func drop():
 func _on_Area2D_body_entered(body):
 	if get_parent() is KinematicBody2D:
 		return
-	if body is Player:
+	if body.is_in_group("player"):
 		body.call_deferred("equip_weapon",self)
 		emit_signal("picked_up")
 		#player_over_pickup = body
@@ -56,5 +71,5 @@ func _on_Area2D_body_entered(body):
 func _on_Area2D_body_exited(body):
 	if get_parent() is KinematicBody2D:
 		return
-	if body is Player:
+	if body.is_in_group("player"):
 		player_over_pickup = null

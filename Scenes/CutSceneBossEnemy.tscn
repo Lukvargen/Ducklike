@@ -16,6 +16,10 @@ script = ExtResource( 2 )
 hp = 100000
 speed = 40
 
+[node name="AgroArea" parent="." index="1"]
+collision_layer = 9
+collision_mask = 9
+
 [node name="CollisionShape2D" parent="AgroArea" index="0"]
 shape = SubResource( 1 )
 

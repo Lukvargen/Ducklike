@@ -17,7 +17,7 @@ func _input(event):
 			anim.play("HaveMoney")
 			$buyComplete.play()
 			Global.data.dog_trades += 1
-			Global.player.increase_max_hp(2)
+			Global.player.increase_max_hp(1)
 			
 			$HBoxContainer/Label.text = str(get_cost())
 		else:

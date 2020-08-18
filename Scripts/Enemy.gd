@@ -18,6 +18,7 @@ onready var hit_sound = $HitAudio
 onready var ray = $RayCast2D
 onready var attack_from_pos = $AttackFromPos
 onready var sprite = $Sprite
+onready var stun_timer = $StunTimer
 
 
 
@@ -26,7 +27,8 @@ var dead = false
 
 
 
-func take_dmg(value):
+
+func take_dmg(value, stun_time):
 	Global.freeze()
 	#Global.camera.trauma = 0.5
 	
@@ -43,6 +45,12 @@ func take_dmg(value):
 	
 	if hp <= 0:
 		call_deferred("die")
+	else:
+		set_physics_process(false)
+		stun_timer.start(stun_time)
+		yield(stun_timer,"timeout")
+		if not dead:
+			set_physics_process(true)
 
 
 func die():

@@ -9,6 +9,8 @@ signal into_complete
 
 signal skulls_changed
 
+var cheat = true
+
 var data = {
 	intro_played = false,
 	skulls = 0,
@@ -33,4 +35,4 @@ func buy(cost):
 	return false
 
 func calculate_max_hp():
-	return data.dog_trades*2
+	return data.dog_trades

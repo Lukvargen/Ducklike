@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scenes/MeleeWeapon.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Player/Sword.gd" type="Script" id=2]
+[ext_resource path="res://Player/MeleeSlashProjectile.tscn" type="PackedScene" id=3]
+
+[node name="Sword" instance=ExtResource( 1 )]
+rotation = -1.5708
+script = ExtResource( 2 )
+projectile = ExtResource( 3 )
+projectile_speed = 50

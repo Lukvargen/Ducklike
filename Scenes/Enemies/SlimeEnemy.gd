@@ -79,6 +79,7 @@ func _on_AgroArea_body_entered(body):
 
 func _on_DmgArea_body_entered(body):
 	if body is Player:
-		body.take_dmg(1)
+		if not dead:
+			body.take_dmg(1)
 		pass
 
