@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scenes/Enemies/MageEnemy.tscn" type="PackedScene" id=1]
+
+[node name="MageEnemy2" instance=ExtResource( 1 )]
+hp = 15
+bonedrop_amount = 8
+
+[node name="Sprite" parent="." index="2"]
+region_rect = Rect2( 384, 16, 16, 16 )

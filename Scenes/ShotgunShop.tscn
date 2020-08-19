@@ -12,10 +12,14 @@ atlas = ExtResource( 1 )
 region = Rect2( 624, 144, 16, 16 )
 
 [node name="ShotgunShop" instance=ExtResource( 2 )]
+bone_cost = 50
 weapon_id = "shotgun"
 
 [node name="Sprite" parent="." index="1"]
 region_rect = Rect2( 480, 144, 16, 16 )
+
+[node name="HBoxContainer" parent="." index="2"]
+rect_scale = Vector2( 1e-05, 1e-05 )
 
 [node name="TextureRect2" parent="HBoxContainer" index="1"]
 texture = SubResource( 1 )

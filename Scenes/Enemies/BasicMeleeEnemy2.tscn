@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scenes/Enemies/BasicMeleeEnemy.tscn" type="PackedScene" id=1]
+
+[node name="BasicMeleeEnemy2" instance=ExtResource( 1 )]
+hp = 10
+bonedrop_amount = 4
+
+[node name="Sprite" parent="." index="2"]
+region_rect = Rect2( 432, 0, 16, 16 )

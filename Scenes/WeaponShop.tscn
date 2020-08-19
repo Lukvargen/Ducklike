@@ -47,5 +47,8 @@ tracks/2/keys = {
 [node name="WeaponShop" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 
+[node name="HBoxContainer" parent="." index="2"]
+rect_scale = Vector2( 1e-05, 1e-05 )
+
 [node name="AnimationPlayer" parent="." index="3"]
 anims/Bought = SubResource( 1 )

@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scenes/Enemies/FastMeleeEnemy.tscn" type="PackedScene" id=1]
+
+[node name="FastMeleeEnemy2" instance=ExtResource( 1 )]
+hp = 6
+speed = 100
+bonedrop_amount = 5
+
+[node name="Sprite" parent="." index="2"]
+region_rect = Rect2( 416, 0, 16, 16 )

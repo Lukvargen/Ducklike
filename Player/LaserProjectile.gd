@@ -7,9 +7,18 @@ onready var shape = $SpreadArea/CollisionShape2D
 
 var enemies_hit = []
 
+func _ready():
+	pass
+
 func spawn(dir, super):
 	line.add_point(Vector2())
-	ray.cast_to = dir * 100
+	
+	if super:
+		ray.cast_to = dir * 75
+		line.default_color = Color(4, 2, 1)
+	else:
+		ray.cast_to = dir * 50
+	
 	ray.enabled = true
 	ray.force_raycast_update()
 	
@@ -23,7 +32,7 @@ func spawn(dir, super):
 			
 			area.global_position = col.global_position
 			
-			for i in 3:
+			for i in 4 if super else 2:
 				yield(get_tree(),"physics_frame")
 				print(area.get_overlapping_areas())
 				var enemy = get_closest_enemy()

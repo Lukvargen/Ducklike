@@ -186,6 +186,7 @@ func take_dmg(value):
 		if dead:
 			return
 		dead = true
+		Global.player_dead()
 		$CollisionShape2D.set_deferred("disabled", true)
 		set_physics_process(false)
 		hide()

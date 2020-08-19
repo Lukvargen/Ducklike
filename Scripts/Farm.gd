@@ -14,6 +14,9 @@ func _ready():
 	
 	if not Global.data.intro_played:
 		$Dog.queue_free()
+		$ShotgunShop.queue_free()
+		$GunShop.queue_free()
+		$LaserGunShop.queue_free()
 		
 		MusicPlayer.change_song("calm")
 		yield(get_tree().create_timer(2.0, false),"timeout")
@@ -83,6 +86,6 @@ func _on_ExitFarm_body_entered(body):
 		yield(Transition, "transition_complete")
 		MusicPlayer.change_song("forest")
 		remove_child(body)
-		get_tree().change_scene_to(preload("res://Scenes/CombatScenes/Forest1.tscn"))
-		
+		#get_tree().change_scene_to(preload("res://Scenes/CombatScenes/Forest6.tscn"))
+		Global.new_stage()
 		
