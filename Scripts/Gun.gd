@@ -7,11 +7,12 @@ onready var anim = $AnimationPlayer
 
 var player_over_pickup = null
 
-var shoot_delay = 0.25
+export var shoot_delay = 0.25
 var shoot_delta = 0
 
 export var projectile_speed = 175
 export var rand_spread = 0.05
+export (PackedScene) var projectile
 
 signal picked_up
 
@@ -45,7 +46,7 @@ func shoot(dir, speed):
 	anim.stop()
 	dir = dir.rotated(rand_range(-rand_spread, rand_spread))
 	anim.play("shoot")
-	var p = preload("res://Scenes/Projectile.tscn").instance()
+	var p = projectile.instance()
 	p.global_position = spawn_point.global_position
 	p.rotation = dir.angle()
 	p.velocity = dir * speed
@@ -62,6 +63,9 @@ func drop():
 func _on_Area2D_body_entered(body):
 	if get_parent() is KinematicBody2D:
 		return
+	if get_parent().owner is KinematicBody2D: # spy dåligt men aja
+		return
+	
 	if body.is_in_group("player"):
 		body.call_deferred("equip_weapon",self)
 		emit_signal("picked_up")

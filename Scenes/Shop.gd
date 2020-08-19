@@ -13,7 +13,6 @@ func _input(event):
 		interact()
 
 func interact():
-	
 	pass
 
 func buy_positive():

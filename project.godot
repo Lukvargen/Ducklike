@@ -74,6 +74,8 @@ EscMenu="*res://Scenes/EscMenu.tscn"
 
 window/size/width=400
 window/size/height=225
+window/size/test_width=1200
+window/size/test_height=675
 mouse_cursor/custom_image="res://Textures/MouseTarget.png"
 mouse_cursor/custom_image_hotspot=Vector2( 11, 11 )
 window/stretch/mode="viewport"

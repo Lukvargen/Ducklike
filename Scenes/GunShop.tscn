@@ -1,21 +1,21 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Textures/colored_transparent_packed.png" type="Texture" id=1]
-[ext_resource path="res://Scenes/WeaponShop.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/WeaponShop.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Textures/colored_transparent_packed.png" type="Texture" id=2]
 
 [sub_resource type="AtlasTexture" id=1]
-atlas = ExtResource( 1 )
+atlas = ExtResource( 2 )
 region = Rect2( 512, 192, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=2]
-atlas = ExtResource( 1 )
-region = Rect2( 624, 144, 16, 16 )
+atlas = ExtResource( 2 )
+region = Rect2( 592, 144, 16, 16 )
 
-[node name="ShotgunShop" instance=ExtResource( 2 )]
-weapon_id = "shotgun"
+[node name="GunShop" instance=ExtResource( 1 )]
+weapon_id = "gun"
 
 [node name="Sprite" parent="." index="1"]
-region_rect = Rect2( 480, 144, 16, 16 )
+region_rect = Rect2( 416, 112, 16, 16 )
 
 [node name="TextureRect2" parent="HBoxContainer" index="1"]
 texture = SubResource( 1 )

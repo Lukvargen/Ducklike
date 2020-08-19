@@ -5,7 +5,7 @@
 [ext_resource path="res://Sound/sfx_sounds_pause1_out.wav" type="AudioStream" id=3]
 [ext_resource path="res://Scenes/MainTheme.tres" type="Theme" id=4]
 
-[sub_resource type="Shader" id=13]
+[sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
 
 uniform sampler2D NOISE_PATTERN;
@@ -18,18 +18,18 @@ void fragment(){
 "
 custom_defines = ""
 
-[sub_resource type="OpenSimplexNoise" id=14]
+[sub_resource type="OpenSimplexNoise" id=2]
 period = 27.5
 
-[sub_resource type="NoiseTexture" id=15]
+[sub_resource type="NoiseTexture" id=3]
 width = 500
 height = 500
 seamless = true
-noise = SubResource( 14 )
+noise = SubResource( 2 )
 
-[sub_resource type="ShaderMaterial" id=16]
-shader = SubResource( 13 )
-shader_param/NOISE_PATTERN = SubResource( 15 )
+[sub_resource type="ShaderMaterial" id=4]
+shader = SubResource( 1 )
+shader_param/NOISE_PATTERN = SubResource( 3 )
 
 [node name="EscMenu" type="CanvasLayer"]
 pause_mode = 2
@@ -49,12 +49,12 @@ __meta__ = {
 [node name="TextureRect" type="TextureRect" parent="ColorRect"]
 pause_mode = 2
 self_modulate = Color( 1, 1, 1, 0.392157 )
-material = SubResource( 16 )
+material = SubResource( 4 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = 20.0
 margin_bottom = 230.0
-texture = SubResource( 15 )
+texture = SubResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -69,9 +69,9 @@ __meta__ = {
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/CenterContainer"]
 margin_left = 137.0
-margin_top = 43.0
+margin_top = 17.0
 margin_right = 262.0
-margin_bottom = 181.0
+margin_bottom = 208.0
 mouse_filter = 2
 custom_constants/separation = 3
 alignment = 1
@@ -93,18 +93,26 @@ rect_min_size = Vector2( 125, 50 )
 toggle_mode = true
 text = "Fullscreen"
 
-[node name="MusicLbl" type="Label" parent="ColorRect/CenterContainer/VBoxContainer"]
+[node name="Quit" type="Button" parent="ColorRect/CenterContainer/VBoxContainer"]
 margin_top = 106.0
 margin_right = 125.0
-margin_bottom = 119.0
+margin_bottom = 156.0
+rect_min_size = Vector2( 125, 50 )
+toggle_mode = true
+text = "Quit"
+
+[node name="MusicLbl" type="Label" parent="ColorRect/CenterContainer/VBoxContainer"]
+margin_top = 159.0
+margin_right = 125.0
+margin_bottom = 172.0
 text = "Music Volume"
 align = 1
 valign = 2
 
 [node name="MusicSlider" type="HSlider" parent="ColorRect/CenterContainer/VBoxContainer"]
-margin_top = 122.0
+margin_top = 175.0
 margin_right = 125.0
-margin_bottom = 138.0
+margin_bottom = 191.0
 min_value = 0.001
 max_value = 1.0
 step = 0.001
@@ -136,5 +144,6 @@ stream = ExtResource( 2 )
 stream = ExtResource( 3 )
 [connection signal="pressed" from="ColorRect/CenterContainer/VBoxContainer/Continue" to="." method="_on_Continue_pressed"]
 [connection signal="toggled" from="ColorRect/CenterContainer/VBoxContainer/ToggleFullscreen" to="." method="_on_ToggleFullscreen_toggled"]
+[connection signal="pressed" from="ColorRect/CenterContainer/VBoxContainer/Quit" to="." method="_on_Quit_pressed"]
 [connection signal="value_changed" from="ColorRect/CenterContainer/VBoxContainer/MusicSlider" to="." method="_on_HSlider_value_changed"]
 [connection signal="value_changed" from="ColorRect/CenterContainer/VBoxContainer/EffectsSlider" to="." method="_on_EffectsSlider_value_changed"]

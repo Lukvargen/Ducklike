@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Textures/colored_transparent_packed.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Gun.gd" type="Script" id=2]
 [ext_resource path="res://Sound/ShootSound.wav" type="AudioStream" id=3]
+[ext_resource path="res://Scenes/Projectile.tscn" type="PackedScene" id=4]
 
 [sub_resource type="AudioStreamRandomPitch" id=1]
 audio_stream = ExtResource( 3 )
@@ -35,6 +36,7 @@ offset = Vector2( 10, 0 )
 region_enabled = true
 region_rect = Rect2( 592, 144, 16, 16 )
 script = ExtResource( 2 )
+projectile = ExtResource( 4 )
 
 [node name="SpawnPoint" type="Position2D" parent="."]
 position = Vector2( 15, -1 )

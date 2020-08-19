@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scenes/Gun.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Player/LaserGun.gd" type="Script" id=2]
+[ext_resource path="res://Player/LaserProjectile.tscn" type="PackedScene" id=3]
+
+[node name="LaserGun" instance=ExtResource( 1 )]
+offset = Vector2( 7, 0 )
+region_rect = Rect2( 608, 144, 16, 16 )
+script = ExtResource( 2 )
+projectile = ExtResource( 3 )

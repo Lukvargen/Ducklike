@@ -43,3 +43,8 @@ func _on_EffectsSlider_value_changed(value):
 func _on_ToggleFullscreen_toggled(button_pressed):
 	OS.window_fullscreen = button_pressed
 	pass # Replace with function body.
+
+
+func _on_Quit_pressed():
+	get_tree().quit()
+	pass # Replace with function body.

@@ -15,6 +15,13 @@ var data = {
 	intro_played = false,
 	skulls = 0,
 	dog_trades = 0,
+	
+	selected_weapon = "laser_gun",
+	weapons_unlocked = {
+		gun = true,
+		shotgun = false,
+		laser_gun = false,
+	}
 }
 
 var enemies = {
@@ -29,6 +36,12 @@ var enemies = {
 	slime = {
 		lvl = 5
 	}
+}
+
+var weapons = {
+	gun = preload("res://Scenes/Gun.tscn"),
+	shotgun = preload("res://Player/Shotgun.tscn"),
+	laser_gun = preload("res://Player/LaserGun.tscn"),
 }
 
 func freeze():
@@ -48,3 +61,8 @@ func buy(cost):
 
 func calculate_max_hp():
 	return data.dog_trades
+
+func create_weapon(id):
+	var weapon = weapons[id].instance()
+	return weapon
+	

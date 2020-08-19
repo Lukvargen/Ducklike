@@ -5,3 +5,6 @@
 
 [node name="Dog" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+
+[node name="HBoxContainer" parent="." index="2"]
+rect_scale = Vector2( 1e-05, 1e-05 )

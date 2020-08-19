@@ -54,6 +54,10 @@ func _ready():
 #	add_child(test)
 	#equip_weapon(test)
 	
+	var selected_weapon = Global.data.selected_weapon
+	if selected_weapon != null:
+		equip_weapon(Global.create_weapon(selected_weapon))
+	
 	increase_max_hp(Global.calculate_max_hp())
 
 func _physics_process(delta):
@@ -150,10 +154,13 @@ func play_footstep():
 	footstep_counter += 1
 
 func equip_weapon(weap):
-	if weapon.get_child_count() > 0:
-		return
+	if equiped_weapon:
+		equiped_weapon.queue_free()
+		equiped_weapon = null
+	
 	weapon_anim.play("equip")
-	weap.get_parent().remove_child(weap)
+	if weap.get_parent():
+		weap.get_parent().remove_child(weap)
 	weapon.add_child(weap)
 	weap.position = Vector2()
 	equiped_weapon = weap

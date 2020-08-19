@@ -1,7 +1,51 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scenes/Shop.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/WeaponShop.gd" type="Script" id=2]
 
+[sub_resource type="Animation" id=1]
+resource_name = "Bought"
+length = 0.01
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("HBoxContainer/Label:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.01 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HBoxContainer/TextureRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.01 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("HBoxContainer/TextureRect2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.01 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
 [node name="WeaponShop" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+
+[node name="AnimationPlayer" parent="." index="3"]
+anims/Bought = SubResource( 1 )
