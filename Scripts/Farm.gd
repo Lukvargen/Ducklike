@@ -8,14 +8,20 @@ var bread_needed = 5
 var attacked = false
 
 func _ready():
+	Global.save_game()
 	Transition.play_out()
 	
-	_on_Gun_picked_up() # remove me :))))))
+	#_on_Gun_picked_up() # remove me :))))))
+	
+	if not Global.data.reached_boss:
+		$CarArea.queue_free()
 	
 	if Global.data.won_game:
 		MusicPlayer.change_song("calm")
 		yield(get_tree().create_timer(2.0, false),"timeout")
-		spawn_bread()
+		for i in 5:
+			spawn_bread()
+			yield(get_tree().create_timer(0.5, false),"timeout")
 		return
 	
 	if not Global.data.intro_played:
@@ -84,8 +90,12 @@ func _on_Gun_picked_up():
 	pass # Replace with function body.
 
 
+var gone_through = false
 func _on_ExitFarm_body_entered(body):
 	if body is Player:
+		if gone_through:
+			return
+		gone_through = true
 		Global.data.intro_played = true
 		Global.emit_signal("into_complete")
 		
@@ -96,3 +106,16 @@ func _on_ExitFarm_body_entered(body):
 		#get_tree().change_scene_to(preload("res://Scenes/CombatScenes/Forest6.tscn"))
 		Global.new_stage()
 		
+
+var car = false
+func _on_CarArea_body_entered(body):
+	if car:return
+	car = true
+	Transition.play_in()
+	yield(Transition, "transition_complete")
+	#MusicPlayer.change_song("forest")
+	remove_child(body)
+	Global.lvl = 9
+	Global.data.used_car = true
+	Global.new_stage()
+

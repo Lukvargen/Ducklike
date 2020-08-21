@@ -41,4 +41,4 @@ func _on_Dog_body_exited(body):
 	pass # Replace with function body.
 
 func get_cost():
-	return 5 * pow(2, Global.data.dog_trades)
+	return floor(10 * pow(1.5, Global.data.dog_trades))

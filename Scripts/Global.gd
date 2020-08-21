@@ -14,18 +14,23 @@ var cheat = true
 var lvl = 0
 
 var data = {
+	version = "1.0",
 	intro_played = false,
 	skulls = 0,
-	dog_trades = 4,
+	dog_trades = 0,
+	reached_boss = false,
+	used_car = false,
 	won_game = false,
 	
-	selected_weapon = "gun",
+	selected_weapon = null,
 	weapons_unlocked = {
 		gun = true,
 		shotgun = false,
 		laser_gun = false,
 	}
 }
+
+var const_data = {}
 
 var enemies = {
 	normal = {
@@ -66,6 +71,8 @@ var weapons = {
 }
 
 func _ready():
+	const_data = data.duplicate(true)
+	load_game()
 	randomize()
 
 func freeze():
@@ -112,12 +119,39 @@ func new_stage():
 	lvl += 1
 	if lvl == 5:
 		MusicPlayer.change_song("forest2")
+	if lvl == 10:
+		data.reached_boss = true
+		MusicPlayer.change_song("boss")
+		get_tree().change_scene_to(preload("res://Scenes/CombatScenes/BossScene.tscn"))
+		return
 	var rand_stage = scenes[int(rand_range(0, scenes.size()))]
 	get_tree().change_scene_to(rand_stage)
 
 
+func save_game():
+	var save = File.new()
+	save.open("user://savefile.save", File.WRITE)
+	
+	save.store_line(to_json(data))
+	save.close()
+	
 
 
+func load_game():
+	var save = File.new()
+	if not save.file_exists("user://savefile.save"):
+		return
+	
+	save.open("user://savefile.save", File.READ)
+	while save.get_position() < save.get_len():
+		var loaded_data = parse_json(save.get_line())
+		print("loaded_data",loaded_data)
+		data = loaded_data
+	save.close()
 
+
+func hard_reset():
+	data = const_data.duplicate(true)
+	save_game()
 
 

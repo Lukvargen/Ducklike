@@ -3,6 +3,7 @@ class_name Enemy
 
 export var hp = 3
 export var speed = 50
+export var dmg = 1
 
 export var hit_vel_mult = 0.1
 

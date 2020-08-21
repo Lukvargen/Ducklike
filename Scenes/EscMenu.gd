@@ -48,3 +48,11 @@ func _on_ToggleFullscreen_toggled(button_pressed):
 func _on_Quit_pressed():
 	get_tree().quit()
 	pass # Replace with function body.
+
+
+func _on_HardReset_pressed():
+	if $ColorRect/CenterContainer/VBoxContainer/HBoxContainer/CheckBox.pressed:
+		Global.hard_reset()
+		get_tree().change_scene_to(preload("res://Farm.tscn"))
+		toggle_pause()
+	pass # Replace with function body.

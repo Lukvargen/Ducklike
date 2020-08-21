@@ -14,10 +14,10 @@ func spawn(dir, super):
 	line.add_point(Vector2())
 	
 	if super:
-		ray.cast_to = dir * 75
+		ray.cast_to = dir * 100
 		line.default_color = Color(4, 2, 1)
 	else:
-		ray.cast_to = dir * 50
+		ray.cast_to = dir * 75
 	
 	ray.enabled = true
 	ray.force_raycast_update()
@@ -28,23 +28,23 @@ func spawn(dir, super):
 		var col = ray.get_collider().owner
 		if col is Enemy:
 			enemies_hit.append(col)
-			col.take_dmg(1, 0.05)
+			col.take_dmg(2, 0.05)
 			
 			area.global_position = col.global_position
+		
+		for i in 4 if super else 2:
+			yield(get_tree(),"physics_frame")
+			var enemy = get_closest_enemy()
+			if not enemy:
+				return
+			area.global_position = enemy.global_position
+			enemy.take_dmg(1, 0.05)
+			enemies_hit.append(enemy)
 			
-			for i in 4 if super else 2:
-				yield(get_tree(),"physics_frame")
-				print(area.get_overlapping_areas())
-				var enemy = get_closest_enemy()
-				if not enemy:
-					return
-				area.global_position = enemy.global_position
-				enemy.take_dmg(1, 0.05)
-				enemies_hit.append(enemy)
-				
-				line.add_point(((enemy.global_position - global_position)/2).rotated(rand_range(-0.25, 0.25)))
-				
-				line.add_point(enemy.global_position - global_position)
+			line.add_point(((enemy.global_position - global_position)/2).rotated(rand_range(-0.25, 0.25)))
+			
+			line.add_point(enemy.global_position - global_position)
+		
 		
 	else:
 		line.add_point(ray.cast_to)

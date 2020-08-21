@@ -6,6 +6,6 @@
 [node name="Shotgun" instance=ExtResource( 1 )]
 region_rect = Rect2( 624, 144, 16, 16 )
 script = ExtResource( 2 )
-shoot_delay = 0.4
+shoot_delay = 0.3
 id = "shotgun"
-projectile_speed = 125
+projectile_speed = 150

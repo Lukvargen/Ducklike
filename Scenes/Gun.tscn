@@ -36,6 +36,7 @@ offset = Vector2( 10, 0 )
 region_enabled = true
 region_rect = Rect2( 592, 144, 16, 16 )
 script = ExtResource( 2 )
+shoot_delay = 0.25
 id = "gun"
 projectile = ExtResource( 4 )
 

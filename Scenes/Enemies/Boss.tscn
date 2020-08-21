@@ -4,7 +4,7 @@
 [ext_resource path="res://Scripts/Boss.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/MainTheme.tres" type="Theme" id=3]
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=1]
 resource_name = "shoot"
 length = 0.1
 tracks/0/type = "value"
@@ -20,16 +20,15 @@ tracks/0/keys = {
 "values": [ Vector2( 1.2, 0.8 ), Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="StyleBoxFlat" id=1]
+[sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0.219608, 0.85098, 0.45098, 1 )
 border_color = Color( 0, 0, 0, 1 )
 shadow_size = 1
 
-[sub_resource type="StyleBoxFlat" id=2]
+[sub_resource type="StyleBoxFlat" id=3]
 bg_color = Color( 0.901961, 0.282353, 0.180392, 1 )
 
-[sub_resource type="Animation" id=3]
-resource_name = "show"
+[sub_resource type="Animation" id=4]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Control:modulate")
@@ -47,14 +46,14 @@ tracks/0/keys = {
 [node name="Boss" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 hp = 100
-bonedrop_amount = 100
+bonedrop_amount = 0
 
 [node name="Sprite" parent="." index="2"]
 rotation = -8.32238e-09
 region_rect = Rect2( 480, 96, 16, 16 )
 
 [node name="AnimationPlayer" parent="." index="3"]
-anims/shoot = SubResource( 4 )
+anims/shoot = SubResource( 1 )
 
 [node name="BossHp" type="CanvasLayer" parent="." index="10"]
 
@@ -73,8 +72,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -5.0
 rect_min_size = Vector2( 0, 5 )
-custom_styles/fg = SubResource( 1 )
-custom_styles/bg = SubResource( 2 )
+custom_styles/fg = SubResource( 2 )
+custom_styles/bg = SubResource( 3 )
 value = 100.0
 percent_visible = false
 __meta__ = {
@@ -93,4 +92,4 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="BossHp" index="1"]
-anims/show = SubResource( 3 )
+anims/show = SubResource( 4 )

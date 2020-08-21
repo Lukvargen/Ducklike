@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/MainTheme.tres" type="Theme" id=1]
+[ext_resource path="res://Textures/colored_transparent_packed.png" type="Texture" id=2]
+
+[node name="Tutorial" type="CanvasLayer"]
+
+[node name="Control" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "Shoot"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "Roll [SPACE]"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 184, 96 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 464, 240, 16, 16 )

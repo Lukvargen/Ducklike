@@ -27,9 +27,12 @@ func _ready():
 		ysort.add_child(Global.player)
 	pass
 
-
+var gone_through = false
 func _on_NextLevelArea_body_entered(body):
 	if body is Player:
+		if gone_through:
+			return
+		gone_through = true
 		#if next_scene == null:
 		#	print("Next Scene is null!")
 		#	return
