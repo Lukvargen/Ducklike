@@ -10,6 +10,8 @@ var player_over_pickup = null
 export var shoot_delay = 0.25
 var shoot_delta = 0
 
+export var id = ""
+
 export var projectile_speed = 175
 export var rand_spread = 0.05
 export (PackedScene) var projectile

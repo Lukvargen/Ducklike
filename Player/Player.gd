@@ -164,6 +164,8 @@ func equip_weapon(weap):
 	weapon.add_child(weap)
 	weap.position = Vector2()
 	equiped_weapon = weap
+	
+	Global.data.selected_weapon = weap.id
 
 func eat_bread():
 	pass

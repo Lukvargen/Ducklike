@@ -40,3 +40,4 @@ func _on_NextLevelArea_body_entered(body):
 		Global.new_stage()
 		pass
 	pass # Replace with function body.
+

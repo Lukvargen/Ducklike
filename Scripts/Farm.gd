@@ -12,6 +12,12 @@ func _ready():
 	
 	_on_Gun_picked_up() # remove me :))))))
 	
+	if Global.data.won_game:
+		MusicPlayer.change_song("calm")
+		yield(get_tree().create_timer(2.0, false),"timeout")
+		spawn_bread()
+		return
+	
 	if not Global.data.intro_played:
 		$Dog.queue_free()
 		$ShotgunShop.queue_free()
@@ -43,9 +49,10 @@ func bread_eaten():
 	
 	if not attacked:
 		spawn_bread()
-		if bread_thrown > bread_needed:
-			yield(get_tree().create_timer(rand_range(1, 2)),"timeout")
-			start_attack()
+		if not Global.data.won_game:
+			if bread_thrown > bread_needed:
+				yield(get_tree().create_timer(rand_range(1, 2)),"timeout")
+				start_attack()
 
 
 func start_attack():

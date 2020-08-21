@@ -16,9 +16,10 @@ var lvl = 0
 var data = {
 	intro_played = false,
 	skulls = 0,
-	dog_trades = 0,
+	dog_trades = 4,
+	won_game = false,
 	
-	selected_weapon = null,
+	selected_weapon = "gun",
 	weapons_unlocked = {
 		gun = true,
 		shotgun = false,

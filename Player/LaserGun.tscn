@@ -8,4 +8,5 @@
 offset = Vector2( 7, 0 )
 region_rect = Rect2( 608, 144, 16, 16 )
 script = ExtResource( 2 )
+id = "laser_gun"
 projectile = ExtResource( 3 )
