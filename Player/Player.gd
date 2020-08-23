@@ -58,6 +58,7 @@ func _ready():
 	if selected_weapon != null:
 		equip_weapon(Global.create_weapon(selected_weapon))
 	
+	print("Global.calculate_max_hp()",Global.calculate_max_hp())
 	increase_max_hp(Global.calculate_max_hp())
 
 func _physics_process(delta):

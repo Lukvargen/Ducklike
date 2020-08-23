@@ -12,7 +12,7 @@ func _input(event):
 			pass
 
 func _ready():
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), log(0.5) * 20)
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), log(Global.data.volume) * 20)
 
 func _on_Continue_pressed():
 	toggle_pause()
@@ -32,11 +32,13 @@ func toggle_pause():
 
 
 func _on_HSlider_value_changed(value):
+	Global.data.volume = value
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), log(value) * 20)
 	pass # Replace with function body.
 
 
 func _on_EffectsSlider_value_changed(value):
+	
 	pass # Replace with function body.
 
 

@@ -20,6 +20,7 @@ func buy_positive():
 	anim.play("HaveMoney")
 	$HBoxContainer/Label.text = str(get_cost())
 	$buyComplete.play()
+	Global.save_game()
 
 func buy_negative():
 	anim.stop()

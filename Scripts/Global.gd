@@ -13,14 +13,19 @@ var cheat = true
 
 var lvl = 0
 
+var loaded = false
+
 var data = {
-	version = "1.0",
+	version = "1.3",
 	intro_played = false,
+	tutorial_played = false,
 	skulls = 0,
 	dog_trades = 0,
 	reached_boss = false,
 	used_car = false,
 	won_game = false,
+	
+	volume = 0.5,
 	
 	selected_weapon = null,
 	weapons_unlocked = {
@@ -134,7 +139,7 @@ func save_game():
 	
 	save.store_line(to_json(data))
 	save.close()
-	
+	print("saved game")
 
 
 func load_game():
@@ -146,8 +151,12 @@ func load_game():
 	while save.get_position() < save.get_len():
 		var loaded_data = parse_json(save.get_line())
 		print("loaded_data",loaded_data)
-		data = loaded_data
+		if data.has("version") and loaded_data.has("version"):
+			if data.version == loaded_data.version:
+				data = loaded_data
 	save.close()
+	Global.loaded = true
+	print("loaded game")
 
 
 func hard_reset():

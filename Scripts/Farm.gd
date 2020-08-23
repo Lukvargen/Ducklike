@@ -8,7 +8,8 @@ var bread_needed = 5
 var attacked = false
 
 func _ready():
-	Global.save_game()
+	if Global.loaded:
+		Global.save_game()
 	Transition.play_out()
 	
 	#_on_Gun_picked_up() # remove me :))))))
@@ -104,8 +105,13 @@ func _on_ExitFarm_body_entered(body):
 		MusicPlayer.change_song("forest")
 		remove_child(body)
 		#get_tree().change_scene_to(preload("res://Scenes/CombatScenes/Forest6.tscn"))
-		Global.new_stage()
-		
+		if Global.data.tutorial_played:
+			Global.new_stage()
+		else:
+			Global.data.tutorial_played = true
+			MusicPlayer.change_song("forest")
+			get_tree().change_scene_to(preload("res://Scenes/TutorialScene.tscn"))
+
 
 var car = false
 func _on_CarArea_body_entered(body):
@@ -117,5 +123,7 @@ func _on_CarArea_body_entered(body):
 	remove_child(body)
 	Global.lvl = 9
 	Global.data.used_car = true
+	
 	Global.new_stage()
+
 

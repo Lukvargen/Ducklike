@@ -13,5 +13,4 @@ func _on_Player_hp_changed(hp, max_hp):
 			heart.visible = max_hp > 0
 			max_hp -= 2
 			hp -= 2
-		pass
-	pass # Replace with function body.
+

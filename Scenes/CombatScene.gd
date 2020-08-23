@@ -33,14 +33,9 @@ func _on_NextLevelArea_body_entered(body):
 		if gone_through:
 			return
 		gone_through = true
-		#if next_scene == null:
-		#	print("Next Scene is null!")
-		#	return
 		Transition.play_in()
 		yield(Transition, "transition_complete")
 		$YSort.remove_child(body)
-		#get_tree().change_scene_to(next_scene)
 		Global.new_stage()
-		pass
-	pass # Replace with function body.
+
 
